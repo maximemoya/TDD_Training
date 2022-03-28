@@ -80,6 +80,9 @@ class StringCalculatorTest(){
     @Test
     fun customSeparators_01(){
         expectThat(StringCalculator("//;\n1;2")).isEqualTo("3")
+        expectThat(StringCalculator("//|\n1|2|3")).isEqualTo("6")
+        expectThat(StringCalculator("//sep\n2sep3")).isEqualTo("5")
+        expectThat(StringCalculator("//|\n1|2,3")).isEqualTo("'|' expected but ',' found at position 3.")
     }
 
 }
