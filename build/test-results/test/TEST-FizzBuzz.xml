@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="FizzBuzz" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-03-28T09:24:17" hostname="DESKTOP-LM7505R" time="0.035">
+  <properties/>
+  <testcase name="number1()" classname="FizzBuzz" time="0.031"/>
+  <testcase name="number3()" classname="FizzBuzz" time="0.001"/>
+  <testcase name="number5()" classname="FizzBuzz" time="0.001"/>
+  <testcase name="number6()" classname="FizzBuzz" time="0.001"/>
+  <testcase name="number15()" classname="FizzBuzz" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
