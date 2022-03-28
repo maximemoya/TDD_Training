@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test
 import strikt.api.*
 import strikt.assertions.*
 
-class FizzBuzz() {
+class FizzBuzzTest() {
 
     @Test
     fun number1(){
