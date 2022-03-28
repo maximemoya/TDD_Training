@@ -2,30 +2,30 @@ import org.junit.jupiter.api.Test
 import strikt.api.*
 import strikt.assertions.*
 
-class FizzBuzzShould() {
+class FizzBuzz() {
 
     @Test
-    fun `if number is 1 FizzBuzz return 1`(){
+    fun number1(){
         expectThat(FizzBuzz(1)).isEqualTo("1")
     }
 
     @Test
-    fun `if number is 3 FizzBuzz return Fizz`(){
+    fun number3(){
         expectThat(FizzBuzz(3)).isEqualTo("Fizz")
     }
 
     @Test
-    fun `if number is 5 FizzBuzz return Buzz`(){
+    fun number5(){
         expectThat(FizzBuzz(5)).isEqualTo("Buzz")
     }
 
     @Test
-    fun `if number is 6 FizzBuzz return Fizz`(){
+    fun number6(){
         expectThat(FizzBuzz(6)).isEqualTo("Fizz")
     }
 
     @Test
-    fun `if number is 15 FizzBuzz return FizzBuzz`(){
+    fun number15(){
         expectThat(FizzBuzz(15)).isEqualTo("FizzBuzz")
     }
 

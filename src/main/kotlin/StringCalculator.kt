@@ -12,17 +12,6 @@ fun StringCalculator(number: String): String {
         return "0"
     }
 
-    var countFirstSlash = 0;
-    for (c in number){
-        if (c == '/'){
-            countFirstSlash++
-            continue
-        }
-        else{
-            break
-        }
-    }
-
     var numberStrList = number.split("\n",",", ignoreCase = true)
     if (numberStrList[numberStrList.size - 1] == ""){
         return "Number expected but EOF found."

@@ -14,6 +14,9 @@ fun FizzBuzz(round: Int): String {
         return round.toString()
     }
 
+//    --------------
+//    can also be :
+//
 //    var bufferResult = ""
 //    if( round % 3 == 0){
 //        bufferResult += "Fizz"
