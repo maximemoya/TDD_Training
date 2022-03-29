@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="StringCalculatorTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-03-29T09:44:08" hostname="DESKTOP-LM7505R" time="0.07">
+  <properties/>
+  <testcase name="if there are 1 number return number()" classname="StringCalculatorTest" time="0.058"/>
+  <testcase name="manyNumbers()" classname="StringCalculatorTest" time="0.004"/>
+  <testcase name="if there are 2 numbers return addition of the 2 numbers()" classname="StringCalculatorTest" time="0.0"/>
+  <testcase name="missingNumberInLastPosition()" classname="StringCalculatorTest" time="0.0"/>
+  <testcase name="if number is emptyString return str(0)()" classname="StringCalculatorTest" time="0.001"/>
+  <testcase name="customSeparators_01()" classname="StringCalculatorTest" time="0.001"/>
+  <testcase name="newLineAsSeparator()" classname="StringCalculatorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
