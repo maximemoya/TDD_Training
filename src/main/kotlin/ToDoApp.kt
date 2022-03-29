@@ -9,98 +9,96 @@ class ToDoApp {
         BYNAME, BYCHECKEDTHENBYNAME
     }
 
-    //--------------
-    // ATTRIBUTES :
-    //-------------
+    //----------------------
+    // ATTRIBUTES PRIVATES :
+    //---------------------
 
-    val toDoList = mutableListOf<TaskToDo>()
-
+    private var toDoList = arrayOf<TaskToDo?>()
     private var sortingSelection = SortingSelectionEnum.BYCHECKEDTHENBYNAME.ordinal
 
     // -------------
-    //  ADD METHODS
+    //  ADD METHOD
     // -------------
 
-    fun addNewTask(task: TaskToDo): MutableList<TaskToDo> {
-        toDoList.add(task)
-        sortingMethod()
-        return mutableListOf<TaskToDo>().apply { addAll(toDoList) }
+    fun addNewTask(task: TaskToDo) {
+        toDoList = toDoList.copyOf(newSize = (toDoList.size + 1))
+        toDoList[toDoList.size - 1] = task
+        sort()
     }
 
     // ----------------
-    //  REMOVE METHODS
+    //  REMOVE METHOD
     // ----------------
 
-    fun removeTaskById(idTask: Int): MutableList<TaskToDo> {
-        toDoList.removeAt(idTask)
-        sortingMethod()
-        return mutableListOf<TaskToDo>().apply { addAll(toDoList) }
+    fun removeTaskById(idTask: Int) {
+        when (idTask) {
+
+            // remove first one :
+            0 -> {
+                toDoList = toDoList.copyOfRange(1, toDoList.size)
+            }
+            // remove last one :
+            toDoList.size - 1 -> {
+                toDoList = toDoList.copyOfRange(0, toDoList.size - 1)
+            }
+            // remove inside :
+            else -> {
+                val listBefore = toDoList.copyOfRange(0,idTask)
+                val listAfter = toDoList.copyOfRange(idTask + 1, toDoList.size)
+                toDoList = listBefore + listAfter
+            }
+
+        }
+        sort()
     }
 
     // ------------------
     //  CHECKBOX METHODS
     // ------------------
 
-    fun checkATaskById(idTask: Int): Boolean {
-        return if (idTask < toDoList.size) {
-            toDoList[idTask].isCheck = true
-            toDoList[idTask].isCheck
-        } else {
-            false
+    fun checkATaskById(idTask: Int) {
+        if (idTask < toDoList.size) {
+            toDoList[idTask]?.isCheck = true
+            toDoList[idTask]?.isCheck
         }
     }
 
-    fun checkATaskByName(taskName: String): Boolean {
-        return when (val task = toDoList.find { it.name == taskName }) {
-            null -> false
-            else -> {
-                task.isCheck = true
-                task.isCheck
-            }
-        }
+    fun checkATaskByName(taskName: String) {
+        toDoList.find { it?.name == taskName }?.isCheck = true
     }
 
-    fun unCheckATaskById(idTask: Int): Boolean {
-        return if (idTask < toDoList.size) {
-            toDoList[idTask].isCheck = false
-            toDoList[idTask].isCheck
+    fun unCheckATaskById(idTask: Int) {
+        if (idTask < toDoList.size) {
+            toDoList[idTask]?.isCheck = false
         } else {
             true
         }
     }
 
-    fun unCheckATaskByName(taskName: String): Boolean {
-        return when (val task = toDoList.find { it.name == taskName }) {
-            null -> true
-            else -> {
-                task.isCheck = false
-                task.isCheck
-            }
-        }
+    fun unCheckATaskByName(taskName: String) {
+        toDoList.find { it?.name == taskName }?.isCheck = false
     }
 
     // ----------------
     //  SORT METHODS
     // ----------------
 
-    fun setSortingSelection(sortingSelectionEnum: SortingSelectionEnum): MutableList<TaskToDo> {
+    fun setSortingSelection(sortingSelectionEnum: SortingSelectionEnum) {
         sortingSelection = sortingSelectionEnum.ordinal
-        return sortingMethod()
+        sort()
     }
 
-    private fun sortToDoListByTaskNames(): MutableList<TaskToDo> {
-        toDoList.sortBy { it.name }
-        return mutableListOf<TaskToDo>().apply { addAll(toDoList) }
+    private fun sortToDoListByTaskNames() {
+        toDoList.sortBy { it?.name }
     }
 
-    private fun sortToDoListByTaskChecked(): MutableList<TaskToDo> {
-        toDoList.sortWith(compareBy<TaskToDo> { it.isCheck }.thenBy { it.name })
-        return mutableListOf<TaskToDo>().apply { addAll(toDoList) }
+    private fun sortToDoListByTaskChecked() {
+        toDoList.sortWith(compareBy<TaskToDo?> { it?.isCheck }.thenBy { it?.name })
     }
 
-    private fun sortingMethod(): MutableList<TaskToDo> {
+    private fun sort() {
 
-        return when (sortingSelection) {
+        when (sortingSelection) {
 
             SortingSelectionEnum.BYNAME.ordinal -> {
                 sortToDoListByTaskNames()
@@ -116,8 +114,12 @@ class ToDoApp {
 
     }
 
-    // j'ai passe les methodes de sorting en private et je les utilise en mode implicite dans les fonctions add et remove
-    // je rajoute un selecteur pour permettre de choisir le sorting par Name ou par isChecked puis Name comme ca on utilise le sorting en implicite
-    // j'ai refactorise Index en Id pour un langage metier
 
+    // -----------
+    //  GETTERS :
+    // ---------
+
+    fun getActualToDoList(): Array<TaskToDo?> {
+        return toDoList
+    }
 }

@@ -27,14 +27,14 @@ fun StringCalculator(_number: String): String {
         numberStrList = number.split(customDelimiter, ignoreCase = true)
     } else {
         numberStrList = number.split("\n", ",", ignoreCase = true)
+        if (numberStrList.size == 1) {
+            return numberStrList[0]
+        }
     }
 
+    // check last input
     if (numberStrList[numberStrList.size - 1] == "") {
         return "Number expected but EOF found."
-    }
-
-    if (numberStrList.size == 1 && !isCustomDelimiter) {
-        return numberStrList[0]
     }
 
     var numberDouble = 0.0

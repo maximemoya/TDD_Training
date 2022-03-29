@@ -2,7 +2,6 @@ fun fizzBuzz(minNumber: Int, maxNumber: Int): String {
 
     var bufferResult = ""
     for (i in minNumber..maxNumber) {
-
         bufferResult +=
             when (i) {
                 0 -> "0"
@@ -23,11 +22,9 @@ fun fizzBuzz(minNumber: Int, maxNumber: Int): String {
                     }
                 }
             }
-
         if (i != maxNumber) {
             bufferResult += ", "
         }
-
     }
     return bufferResult
 

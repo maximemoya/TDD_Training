@@ -20,7 +20,7 @@ class ToDoAppTest {
     @Test
     fun initToDoList() {
         // Execution :
-        expectThat(myToDoApp.toDoList.size).isEqualTo(0)
+        expectThat(myToDoApp.getActualToDoList().size).isEqualTo(0)
     }
 
     // -------------
@@ -31,11 +31,11 @@ class ToDoAppTest {
     @Test
     fun add1TaskToTheToDoList() {
         // Test method :
-        val toDoListToTest = myToDoApp.addNewTask(ToDoApp.TaskToDo("name0", false))
+        myToDoApp.addNewTask(ToDoApp.TaskToDo("name0", false))
         // Execution :
-        expectThat(toDoListToTest.size).isEqualTo(1)
-        expectThat(toDoListToTest[0].name).isEqualTo("name0")
-        expectThat(toDoListToTest[0].isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList().size).isEqualTo(1)
+        expectThat(myToDoApp.getActualToDoList()[0]?.name).isEqualTo("name0")
+        expectThat(myToDoApp.getActualToDoList()[0]?.isCheck).isEqualTo(false)
     }
 
     // The method add 2 tasks to the toDoList
@@ -44,13 +44,13 @@ class ToDoAppTest {
     fun add2TasksToTheToDoList() {
         // Test method :
         myToDoApp.addNewTask(ToDoApp.TaskToDo("name0", false))
-        val toDoListToTest = myToDoApp.addNewTask(ToDoApp.TaskToDo("name1", false))
+        myToDoApp.addNewTask(ToDoApp.TaskToDo("name1", false))
         // Execution :
-        expectThat(toDoListToTest.size).isEqualTo(2)
-        expectThat(toDoListToTest[0].name).isEqualTo("name0")
-        expectThat(toDoListToTest[0].isCheck).isEqualTo(false)
-        expectThat(toDoListToTest[1].name).isEqualTo("name1")
-        expectThat(toDoListToTest[1].isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList().size).isEqualTo(2)
+        expectThat(myToDoApp.getActualToDoList()[0]?.name).isEqualTo("name0")
+        expectThat(myToDoApp.getActualToDoList()[0]?.isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList()[1]?.name).isEqualTo("name1")
+        expectThat(myToDoApp.getActualToDoList()[1]?.isCheck).isEqualTo(false)
     }
 
     // The method add 3 tasks to the toDoList
@@ -60,15 +60,15 @@ class ToDoAppTest {
         // Test method :
         myToDoApp.addNewTask(ToDoApp.TaskToDo("name2", true))
         myToDoApp.addNewTask(ToDoApp.TaskToDo("name0", true))
-        val toDoListToTest = myToDoApp.addNewTask(ToDoApp.TaskToDo("name1", false))
+        myToDoApp.addNewTask(ToDoApp.TaskToDo("name1", false))
         // Execution :
-        expectThat(toDoListToTest.size).isEqualTo(3)
-        expectThat(toDoListToTest[0].name).isEqualTo("name1")
-        expectThat(toDoListToTest[0].isCheck).isEqualTo(false)
-        expectThat(toDoListToTest[1].name).isEqualTo("name0")
-        expectThat(toDoListToTest[1].isCheck).isEqualTo(true)
-        expectThat(toDoListToTest[2].name).isEqualTo("name2")
-        expectThat(toDoListToTest[2].isCheck).isEqualTo(true)
+        expectThat(myToDoApp.getActualToDoList().size).isEqualTo(3)
+        expectThat(myToDoApp.getActualToDoList()[0]?.name).isEqualTo("name1")
+        expectThat(myToDoApp.getActualToDoList()[0]?.isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList()[1]?.name).isEqualTo("name0")
+        expectThat(myToDoApp.getActualToDoList()[1]?.isCheck).isEqualTo(true)
+        expectThat(myToDoApp.getActualToDoList()[2]?.name).isEqualTo("name2")
+        expectThat(myToDoApp.getActualToDoList()[2]?.isCheck).isEqualTo(true)
     }
 
     // ----------------
@@ -80,9 +80,9 @@ class ToDoAppTest {
     fun removeTaskToTheToDoList() {
         myToDoApp.addNewTask(ToDoApp.TaskToDo("name0", false))
         // Test method :
-        val toDoListToTest = myToDoApp.removeTaskById(0)
+        myToDoApp.removeTaskById(0)
         // Execution :
-        expectThat(toDoListToTest.size).isEqualTo(0)
+        expectThat(myToDoApp.getActualToDoList().size).isEqualTo(0)
     }
 
     // The method remove 1 task from the toDoList of 2 tasks, according input ID
@@ -92,11 +92,11 @@ class ToDoAppTest {
         myToDoApp.addNewTask(ToDoApp.TaskToDo("name0", true))
         myToDoApp.addNewTask(ToDoApp.TaskToDo("name1",false))
         // Test method :
-        val toDoListToTest = myToDoApp.removeTaskById(0)
+        myToDoApp.removeTaskById(0)
         // Execution :
-        expectThat(toDoListToTest.size).isEqualTo(1)
-        expectThat(toDoListToTest[0].name).isEqualTo("name0")
-        expectThat(toDoListToTest[0].isCheck).isEqualTo(true)
+        expectThat(myToDoApp.getActualToDoList().size).isEqualTo(1)
+        expectThat(myToDoApp.getActualToDoList()[0]?.name).isEqualTo("name0")
+        expectThat(myToDoApp.getActualToDoList()[0]?.isCheck).isEqualTo(true)
     }
 
     // The method remove 3 tasks from the toDoList of 5 tasks, according input ID
@@ -110,15 +110,15 @@ class ToDoAppTest {
         myToDoApp.addNewTask(ToDoApp.TaskToDo("name4", false))
         // Test method :
         myToDoApp.removeTaskById(0)
-        val toDoListToTest = myToDoApp.removeTaskById(2)
+        myToDoApp.removeTaskById(2)
         // Execution :
-        expectThat(toDoListToTest.size).isEqualTo(3)
-        expectThat(toDoListToTest[0].name).isEqualTo("name3")
-        expectThat(toDoListToTest[0].isCheck).isEqualTo(false)
-        expectThat(toDoListToTest[1].name).isEqualTo("name4")
-        expectThat(toDoListToTest[1].isCheck).isEqualTo(false)
-        expectThat(toDoListToTest[2].name).isEqualTo("name1")
-        expectThat(toDoListToTest[2].isCheck).isEqualTo(true)
+        expectThat(myToDoApp.getActualToDoList().size).isEqualTo(3)
+        expectThat(myToDoApp.getActualToDoList()[0]?.name).isEqualTo("name3")
+        expectThat(myToDoApp.getActualToDoList()[0]?.isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList()[1]?.name).isEqualTo("name4")
+        expectThat(myToDoApp.getActualToDoList()[1]?.isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList()[2]?.name).isEqualTo("name1")
+        expectThat(myToDoApp.getActualToDoList()[2]?.isCheck).isEqualTo(true)
 
     }
 
@@ -131,9 +131,9 @@ class ToDoAppTest {
     fun checkATaskByIndex() {
         myToDoApp.addNewTask(ToDoApp.TaskToDo("name0", false))
         // Test method :
-        val isCheckToTest = myToDoApp.checkATaskById(0)
+        myToDoApp.checkATaskById(0)
         // Execution :
-        expectThat(isCheckToTest).isEqualTo(true)
+        expectThat(myToDoApp.getActualToDoList()[0]?.isCheck).isEqualTo(true)
     }
 
     // The method checkATaskByName set the Task attribute ischeck to true
@@ -141,9 +141,9 @@ class ToDoAppTest {
     fun checkATaskByName() {
         myToDoApp.addNewTask(ToDoApp.TaskToDo("name0", false))
         // Test method :
-        val isCheckToTest = myToDoApp.checkATaskByName("name0")
+        myToDoApp.checkATaskByName("name0")
         // Execution :
-        expectThat(isCheckToTest).isEqualTo(true)
+        expectThat(myToDoApp.getActualToDoList()[0]?.isCheck).isEqualTo(true)
     }
 
     // The method unCheckATaskByIndex set the Task attribute ischeck to false
@@ -153,9 +153,9 @@ class ToDoAppTest {
         val myToDoApp = ToDoApp()
         myToDoApp.addNewTask(ToDoApp.TaskToDo("name0", true))
         // Test method :
-        val isCheckToTest = myToDoApp.unCheckATaskById(0)
+        myToDoApp.unCheckATaskById(0)
         // Execution :
-        expectThat(isCheckToTest).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList()[0]?.isCheck).isEqualTo(false)
     }
 
     // The method unCheckATaskByName set the Task attribute ischeck to false
@@ -163,9 +163,9 @@ class ToDoAppTest {
     fun unCheckATaskByName() {
         myToDoApp.addNewTask(ToDoApp.TaskToDo("name0", true))
         // Test method :
-        val isCheckToTest = myToDoApp.unCheckATaskByName("name0")
+        myToDoApp.unCheckATaskByName("name0")
         // Execution :
-        expectThat(isCheckToTest).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList()[0]?.isCheck).isEqualTo(false)
     }
 
     // ----------------
@@ -182,36 +182,37 @@ class ToDoAppTest {
         myToDoApp.addNewTask(ToDoApp.TaskToDo("name4", false))
         myToDoApp.addNewTask(ToDoApp.TaskToDo("name1", false))
         // Test method :
-        var toDoListToTest = myToDoApp.setSortingSelection(ToDoApp.SortingSelectionEnum.BYNAME)
+        myToDoApp.setSortingSelection(ToDoApp.SortingSelectionEnum.BYNAME)
         // Execution :
-        expectThat(toDoListToTest.size).isEqualTo(6)
-        expectThat(toDoListToTest[0].name).isEqualTo("name0")
-        expectThat(toDoListToTest[0].isCheck).isEqualTo(true)
-        expectThat(toDoListToTest[1].name).isEqualTo("name1")
-        expectThat(toDoListToTest[1].isCheck).isEqualTo(false)
-        expectThat(toDoListToTest[2].name).isEqualTo("name2")
-        expectThat(toDoListToTest[2].isCheck).isEqualTo(true)
-        expectThat(toDoListToTest[3].name).isEqualTo("name3")
-        expectThat(toDoListToTest[3].isCheck).isEqualTo(false)
-        expectThat(toDoListToTest[4].name).isEqualTo("name4")
-        expectThat(toDoListToTest[4].isCheck).isEqualTo(false)
-        expectThat(toDoListToTest[5].name).isEqualTo("name5")
-        expectThat(toDoListToTest[5].isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList().size).isEqualTo(6)
+        expectThat(myToDoApp.getActualToDoList()[0]?.name).isEqualTo("name0")
+        expectThat(myToDoApp.getActualToDoList()[0]?.isCheck).isEqualTo(true)
+        expectThat(myToDoApp.getActualToDoList()[1]?.name).isEqualTo("name1")
+        expectThat(myToDoApp.getActualToDoList()[1]?.isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList()[2]?.name).isEqualTo("name2")
+        expectThat(myToDoApp.getActualToDoList()[2]?.isCheck).isEqualTo(true)
+        expectThat(myToDoApp.getActualToDoList()[3]?.name).isEqualTo("name3")
+        expectThat(myToDoApp.getActualToDoList()[3]?.isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList()[4]?.name).isEqualTo("name4")
+        expectThat(myToDoApp.getActualToDoList()[4]?.isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList()[5]?.name).isEqualTo("name5")
+        expectThat(myToDoApp.getActualToDoList()[5]?.isCheck).isEqualTo(false)
         // Test method :
-        toDoListToTest = myToDoApp.setSortingSelection(ToDoApp.SortingSelectionEnum.BYCHECKEDTHENBYNAME)
-        expectThat(toDoListToTest.size).isEqualTo(6)
-        expectThat(toDoListToTest[0].name).isEqualTo("name1")
-        expectThat(toDoListToTest[0].isCheck).isEqualTo(false)
-        expectThat(toDoListToTest[1].name).isEqualTo("name3")
-        expectThat(toDoListToTest[1].isCheck).isEqualTo(false)
-        expectThat(toDoListToTest[2].name).isEqualTo("name4")
-        expectThat(toDoListToTest[2].isCheck).isEqualTo(false)
-        expectThat(toDoListToTest[3].name).isEqualTo("name5")
-        expectThat(toDoListToTest[3].isCheck).isEqualTo(false)
-        expectThat(toDoListToTest[4].name).isEqualTo("name0")
-        expectThat(toDoListToTest[4].isCheck).isEqualTo(true)
-        expectThat(toDoListToTest[5].name).isEqualTo("name2")
-        expectThat(toDoListToTest[5].isCheck).isEqualTo(true)
+        myToDoApp.setSortingSelection(ToDoApp.SortingSelectionEnum.BYCHECKEDTHENBYNAME)
+        // Execution :
+        expectThat(myToDoApp.getActualToDoList().size).isEqualTo(6)
+        expectThat(myToDoApp.getActualToDoList()[0]?.name).isEqualTo("name1")
+        expectThat(myToDoApp.getActualToDoList()[0]?.isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList()[1]?.name).isEqualTo("name3")
+        expectThat(myToDoApp.getActualToDoList()[1]?.isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList()[2]?.name).isEqualTo("name4")
+        expectThat(myToDoApp.getActualToDoList()[2]?.isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList()[3]?.name).isEqualTo("name5")
+        expectThat(myToDoApp.getActualToDoList()[3]?.isCheck).isEqualTo(false)
+        expectThat(myToDoApp.getActualToDoList()[4]?.name).isEqualTo("name0")
+        expectThat(myToDoApp.getActualToDoList()[4]?.isCheck).isEqualTo(true)
+        expectThat(myToDoApp.getActualToDoList()[5]?.name).isEqualTo("name2")
+        expectThat(myToDoApp.getActualToDoList()[5]?.isCheck).isEqualTo(true)
     }
 
 }
