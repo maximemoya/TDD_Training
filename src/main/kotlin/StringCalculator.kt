@@ -27,6 +27,7 @@ fun StringCalculator(_number: String): String {
         numberStrList = number.split(customDelimiter, ignoreCase = true)
     } else {
         numberStrList = number.split("\n", ",", ignoreCase = true)
+        // check first input
         if (numberStrList.size == 1) {
             return numberStrList[0]
         }
@@ -37,6 +38,7 @@ fun StringCalculator(_number: String): String {
         return "Number expected but EOF found."
     }
 
+    // check numbers to add or return exceptionDelimiter
     var numberDouble = 0.0
     for (i in numberStrList.indices) {
         try {
@@ -58,10 +60,12 @@ fun StringCalculator(_number: String): String {
         }
     }
 
+    // RoundNumber to Format 0 or 0.1 or 0.01 or 0.001
     numberDouble = (((numberDouble * 1000).roundToInt()).toDouble()) / 1000
     val result = numberDouble.toString()
     numberStrList = numberDouble.toString().split(".")
 
+    // return result
     return if (numberStrList[1] == "0") {
         numberStrList[0]
     } else {
